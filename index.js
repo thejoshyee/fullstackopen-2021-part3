@@ -1,5 +1,8 @@
 const express = require('express')
 const app = express()
+const moment = require('moment')
+
+const getCurrentDate = () => moment().format('MMMM Do YYYY, h:mm:ss a')
 
 let persons = [
     { 
@@ -25,7 +28,16 @@ let persons = [
 ]
 
 app.get("/", (request, response) => {
-    response.send("<p>Hello World</p>")
+    response.send(`
+        <p>Hello</p>
+    `)
+})
+
+app.get("/info", (request, response) => {
+    response.send(`
+        <p>Phonebook has info for ${persons.length} people.</p>
+        <p>${getCurrentDate()}</p>
+    `)
 })
 
 app.get("/api/persons", (request, response) => {
