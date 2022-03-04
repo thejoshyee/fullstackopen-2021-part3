@@ -1,2 +1,4 @@
-# fullstackopen-2021-part3
-FullStackOpen 2021 - Part 3
+# Fullstackopen 2021 - Part3
+
+## About
+This repo is for part 3 of Full Stack Open 2022. See original repo <a href="https://github.com/thejoshyee/fullstackopen-2021">here</a>.
