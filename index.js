@@ -1,7 +1,6 @@
 const express = require('express')
-const res = require('express/lib/response')
 const app = express()
-app.use(express.json())
+
 const moment = require('moment')
 
 const getCurrentDate = () => moment().format('MMMM Do YYYY, h:mm:ss a')
@@ -11,6 +10,17 @@ const generateId = () => {
         : 0
     return maxId + 1
 }
+app.use(express.json())
+
+
+var morgan = require('morgan')
+morgan.token('person', req => { 
+    return JSON.stringify(req.body) 
+})
+
+app.use(morgan(":method :url :status :res[content-length] - :response-time ms :person"))
+
+
 
 let persons = [
     { 
@@ -107,8 +117,13 @@ app.post('/api/persons', (request, response) => {
     response.json(person)
 })
 
+const unknownEndpoint = (request, response) => {
+    response.status(404).send({ error: 'unknown endpoint' })
+  }
 
+app.use(unknownEndpoint)
 
+  
 
 const PORT = 3001
 app.listen(PORT, () => {
