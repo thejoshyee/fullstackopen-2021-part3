@@ -1,8 +1,16 @@
 const express = require('express')
+const res = require('express/lib/response')
 const app = express()
+app.use(express.json())
 const moment = require('moment')
 
 const getCurrentDate = () => moment().format('MMMM Do YYYY, h:mm:ss a')
+const generateId = () => {
+    const maxId = persons.length > 0 
+        ? Math.max(...persons.map(p => p.id))
+        : 0
+    return maxId + 1
+}
 
 let persons = [
     { 
@@ -26,13 +34,14 @@ let persons = [
       "number": "39-23-6423122"
     }
 ]
-
+//root page
 app.get("/", (request, response) => {
     response.send(`
         <p>Hello</p>
     `)
 })
 
+//info page
 app.get("/info", (request, response) => {
     response.send(`
         <p>Phonebook has info for ${persons.length} people.</p>
@@ -40,9 +49,65 @@ app.get("/info", (request, response) => {
     `)
 })
 
+//get all persons
 app.get("/api/persons", (request, response) => {
     response.json(persons)
 })
+
+//get individual person
+app.get("/api/persons/:id", (request, response) => {
+    const id = Number(request.params.id)
+    const person = persons.find(person => person.id === id)
+
+    if(person) {
+        response.json(person)
+    } else {
+        response.status(404).send("404 - Error - Person not found!")
+    }
+})
+
+// Delete Individual Person
+app.delete('/api/persons/:id', (request, response) => {
+    const id = Number(request.params.id)
+    persons = persons.filter(person => person.id !== id)
+
+    response.status(204).end()
+})
+
+
+// Add New Person
+app.post('/api/persons', (request, response) => {
+    const body = request.body
+
+    if (!body.name) {
+        return response.status(400).json({
+            error: "Name is missing"
+        })
+    } 
+
+    if (!body.number) {
+        return response.status(400).json({
+            error: "Number is missing"
+        })
+    }
+
+    if (persons.find(person => person.name === body.name)) {
+        return response.status(400).json({
+            error: "Name must be unique"
+        })
+    }
+
+    const person = {
+        id: generateId(),
+        name: body.name,
+        number: body.number
+    }
+
+    persons = persons.concat(person)
+    response.json(person)
+})
+
+
 
 
 const PORT = 3001
