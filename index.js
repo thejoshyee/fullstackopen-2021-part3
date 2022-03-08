@@ -16,6 +16,8 @@ app.use(cors())
 
 app.use(express.json())
 
+app.use(express.static('build'))
+
 
 var morgan = require('morgan')
 morgan.token('person', req => { 
