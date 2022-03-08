@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 
 const moment = require('moment')
 
@@ -10,6 +11,9 @@ const generateId = () => {
         : 0
     return maxId + 1
 }
+
+app.use(cors())
+
 app.use(express.json())
 
 
@@ -88,6 +92,7 @@ app.delete('/api/persons/:id', (request, response) => {
 // Add New Person
 app.post('/api/persons', (request, response) => {
     const body = request.body
+    console.log(body)
 
     if (!body.name) {
         return response.status(400).json({
@@ -125,7 +130,7 @@ app.use(unknownEndpoint)
 
   
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 })
