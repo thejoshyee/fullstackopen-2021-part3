@@ -15,11 +15,8 @@ const generateId = () => {
 }
 
 app.use(cors())
-
 app.use(express.json())
-
 app.use(express.static('build'))
-
 
 var morgan = require('morgan')
 morgan.token('person', req => { 
@@ -35,7 +32,6 @@ app.get("/", (request, response) => {
         <p>Hello it's me...</p>
     `)
 })
-
 
 // get info about the collection 
 app.get("/info", (request, response, next) => {
@@ -77,7 +73,6 @@ app.delete('/api/persons/:id', (request, response, next) => {
     })
     .catch(error => next(error))
 })
-
 
 // Add New Person
 app.post('/api/persons', (request, response, next) => {
@@ -150,7 +145,6 @@ const errorHandler = (error, request, response, next) => {
 
 app.use(errorHandler)
   
-
 const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
