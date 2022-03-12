@@ -26,6 +26,7 @@
     "express": "^4.17.3",
     "moment": "^2.29.1",
     "mongoose": "^6.2.5",
+    "mongoose-unique-validator": "^3.0.0",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
