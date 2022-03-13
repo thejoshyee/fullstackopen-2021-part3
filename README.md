@@ -1,9 +1,8 @@
 # University of Helsinki - Full Stack Open 2022 - Part 3
 
 ## About
-Part 3 which was the backend portion for the Phonebook App from Part 2 was done in this separate repo found here.
-
-The Phonebook App (Front End) from Part 2 can be found: <a href="https://github.com/thejoshyee/fullstackopen-2022/tree/main/part2/phonebook">Here</a>
+This is Part 3 of Full Stack Open 2022 - which is the backend portion for the Phonebook App from Part 2.
+The Phonebook App repo (Front End) from Part 2 can be found <a href="https://github.com/thejoshyee/fullstackopen-2022/tree/main/part2/phonebook">Here</a>
 
 ## Learning
   - Node.js
