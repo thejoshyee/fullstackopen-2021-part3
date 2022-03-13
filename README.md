@@ -13,6 +13,6 @@ The Phonebook App (Front End) from Part 2 can be found: <a href="https://github.
   - Heroku
 
 ## Live Demo
-A live demo of the app with full front end and back end implementation can be viewd here: <a href="https://sheltered-sands-30920.herokuapp.com/">Phonebook App</a>
+A live demo of the app with full front end and back end implementation can be viewed here: <a href="https://sheltered-sands-30920.herokuapp.com/">Phonebook App</a>
 
 
